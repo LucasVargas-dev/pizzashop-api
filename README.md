@@ -1,2 +1,2 @@
 # pizzashop-api
-Criando API para testar os recursos Bun e Elysia
+Criando API para testar os recursos da BED stack. Bun + Elysia + DrizzleORM.
