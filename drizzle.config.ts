@@ -1,10 +1,11 @@
-import { defineConfig } from "drizzle-kit";
+import type { Config } from "drizzle-kit";
+import { env } from "./src/env";
 
-export default defineConfig({
+export default {
   schema: "./src/database/schema/index.ts",
-  dialect: "postgresql",
   out: "./drizzle",
-  dbCredentials: { 
-    url: process.env.DATABASE_URL != undefined ? process.env.DATABASE_URL : "postgres://postgres:postgres@localhost:5432/pizzashop",
+  driver: 'pg',
+  dbCredentials: {
+    connectionString: 'postgresql://postgres:postgres@localhost:5432/pizzashop',
   }
-});
+} satisfies Config;

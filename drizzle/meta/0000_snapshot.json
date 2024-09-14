@@ -1,10 +1,10 @@
 {
-  "id": "0a752888-f2ed-45fd-9bf8-e03f8bef5b77",
+  "id": "7b84bd52-9408-4215-b75c-82422724f052",
   "prevId": "00000000-0000-0000-0000-000000000000",
-  "version": "7",
-  "dialect": "postgresql",
+  "version": "5",
+  "dialect": "pg",
   "tables": {
-    "public.users": {
+    "users": {
       "name": "users",
       "schema": "",
       "columns": {
@@ -35,7 +35,6 @@
         "role": {
           "name": "role",
           "type": "user_role",
-          "typeSchema": "public",
           "primaryKey": false,
           "notNull": true,
           "default": "'customer'"
@@ -68,7 +67,7 @@
         }
       }
     },
-    "public.restaurants": {
+    "restaurants": {
       "name": "restaurants",
       "schema": "",
       "columns": {
@@ -129,20 +128,75 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
+    },
+    "auth_links": {
+      "name": "auth_links",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "auth_links_user_id_users_id_fk": {
+          "name": "auth_links_user_id_users_id_fk",
+          "tableFrom": "auth_links",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "auth_links_code_unique": {
+          "name": "auth_links_code_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "code"
+          ]
+        }
+      }
     }
   },
   "enums": {
-    "public.user_role": {
+    "user_role": {
       "name": "user_role",
-      "schema": "public",
-      "values": [
-        "manager",
-        "customer"
-      ]
+      "values": {
+        "manager": "manager",
+        "customer": "customer"
+      }
     }
   },
   "schemas": {},
-  "sequences": {},
   "_meta": {
     "columns": {},
     "schemas": {},
