@@ -5,19 +5,19 @@ import { sendAuthLink } from './routes/send-auth-link'
 import { authenticateFromLink } from './routes/authenticate-from-link'
 import { signOut } from './routes/sign-out'
 import { getProfile } from './routes/get-profile'
-// import { getManagedRestaurante } from './routes/get-managed-restaurante'
-// import { getOrderDetails } from './routes/get-order-details'
-// import { approveOrder } from './routes/approve-order'
-// import { cancelOrder } from './routes/cancel-order'
-// import { deliverOrder } from './routes/deliver-order'
-// import { dispatchOrder } from './routes/dispatch-order'
-// import { getOrders } from './routes/get-orders'
-// import { getMonthReceipt } from './routes/get-month.receipt'
-// import { getDayOrdersAmount } from './routes/get-day-orders-amount'
-// import { getMonthOrdersAmount } from './routes/get-month-orders-amount'
-// import { getMonthCanceledOrdersAmount } from './routes/get-month-canceled-orders-amount'
-// import { getPopularProducts } from './routes/get-popular-products'
-// import { getDailyReceiptInPeriod } from './routes/get-daily-receipt-in-period'
+import { getManagedRestaurante } from './routes/get-managed-restaurant'
+import { getOrderDetails } from './routes/get-order-details'
+import { approveOrder } from './routes/approve-order'
+import { cancelOrder } from './routes/cancel-order'
+import { deliverOrder } from './routes/deliver-order'
+import { dispatchOrder } from './routes/dispatch-order'
+import { getOrders } from './routes/get-orders'
+import { getMonthReceipt } from './routes/get-month-receipt'
+import { getDayOrdersAmount } from './routes/get-day-orders-amount'
+import { getMonthOrdersAmount } from './routes/get-month-orders-amount'
+import { getMonthCanceledOrdersAmount } from './routes/get-month-canceled-orders-amount'
+import { getPopularProducts } from './routes/get-popular-products'
+import { getDailyReceiptInPeriod } from './routes/get-daily-receipt-in-period'
 
 const app = new Elysia()
   .use(registerRestaurant)
@@ -25,19 +25,19 @@ const app = new Elysia()
   .use(authenticateFromLink)
   .use(signOut)
   .use(getProfile)
-  // .use(getManagedRestaurante)
-//   .use(getOrderDetails)
-//   .use(approveOrder)
-//   .use(cancelOrder)
-//   .use(deliverOrder)
-//   .use(dispatchOrder)
-//   .use(getOrders)
-//   .use(getMonthReceipt)
-//   .use(getDayOrdersAmount)
-//   .use(getMonthOrdersAmount)
-//   .use(getMonthCanceledOrdersAmount)
-//   .use(getPopularProducts)
-//   .use(getDailyReceiptInPeriod)
+  .use(getManagedRestaurante)
+  .use(getOrderDetails)
+  .use(approveOrder)
+  .use(cancelOrder)
+  .use(deliverOrder)
+  .use(dispatchOrder)
+  .use(getOrders)
+  .use(getMonthReceipt)
+  .use(getDayOrdersAmount)
+  .use(getMonthOrdersAmount)
+  .use(getMonthCanceledOrdersAmount)
+  .use(getPopularProducts)
+  .use(getDailyReceiptInPeriod)
   .onError(({ code, error, set }) => {
     switch (code) {
       case 'VALIDATION': {
